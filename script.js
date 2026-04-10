@@ -1,5 +1,6 @@
-const VERSION = "v1.0.1";
+const VERSION = "v1.0.2";
 const VERSION_HISTORY = [
+  { version: "v1.0.2", date: "2026/04/10", details: "UIデザインの大幅刷新（グラスモフィズム、アニメーション、モダンフォント採用）" },
   { version: "v1.0.1", date: "2026/04/10", details: "クリアボタン追加、バージョン管理機能、検索期間表示機能の追加" },
   { version: "v1.0.0", date: "2026/04/01", details: "新規作成" }
 ];
@@ -76,7 +77,7 @@ async function searchNews() {
         items.forEach((item, index) => {
           const div = document.createElement('div');
           div.className = 'news-item';
-          div.innerHTML = `${index + 1}. <a href="${item.link}" target="_blank">${item.title}</a>`;
+          div.innerHTML = `<span class="news-index">${index + 1}</span><a href="${item.link}" target="_blank">${item.title}</a>`;
           resultsDiv.appendChild(div);
         });
       }
