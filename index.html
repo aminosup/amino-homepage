@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ニュース検索アプリ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>ニュース検索アプリ <span id="version" class="version-badge" onclick="toggleVersionHistory()">v1.0.1</span></h1>
+    <h3>検索期間：本日～2日前までのニュース</h3>
+    <h4>キーワードをカンマで区切って入力してください。</h4>
+    <input type="text" id="categoryInput" placeholder="カテゴリをカンマで入力してください"
+      value="Python, S＆P500, windows11, BTC, XRP, ETH, 仮想通貨, FXライブ, ipad, FX, chatGPT, Amazon, 暗号資産, 解説">
+    <div class="button-group">
+      <button onclick="searchNews()">検索</button>
+      <button class="clear-btn" onclick="clearResults()">クリア</button>
+    </div>
+    <div id="searchPeriod" class="search-period"></div>
+    <div id="results"></div>
+  </div>
+
+  <!-- バージョン履歴モーダル -->
+  <div id="versionModal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="toggleVersionHistory()">&times;</span>
+      <h2>バージョン履歴</h2>
+      <ul id="versionHistory"></ul>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
