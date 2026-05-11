@@ -1,10 +1,13 @@
-const VERSION = "v1.0.3";
+const VERSION = "v1.0.4";
 const VERSION_HISTORY = [
+  { version: "v1.0.4", date: "2026/05/11", details: "APIのレートリミット対策としてリクエスト間に1秒の待機処理を追加" },
   { version: "v1.0.3", date: "2026/04/10", details: "APIエラー取得時の例外処理を追加（TypeError修正）" },
   { version: "v1.0.2", date: "2026/04/10", details: "UIデザインの大幅刷新（グラスモフィズム、アニメーション、モダンフォント採用）" },
   { version: "v1.0.1", date: "2026/04/10", details: "クリアボタン追加、バージョン管理機能、検索期間表示機能の追加" },
   { version: "v1.0.0", date: "2026/04/01", details: "新規作成" }
 ];
+
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 function isWithinLastTwoDays(pubDateStr) {
   const pubDate = new Date(pubDateStr);
@@ -93,5 +96,8 @@ async function searchNews() {
       errDiv.textContent = `取得失敗: ${error}`;
       resultsDiv.appendChild(errDiv);
     }
+    
+    // APIレートリミット対策: 次のリクエストの前に1秒待機
+    await sleep(1000);
   }
 }

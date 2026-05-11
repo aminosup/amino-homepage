@@ -67,3 +67,9 @@
 - `version-badge`: タイトル横に小さく表示されるバッジ形式。
 - `modal`: 画面中央に表示されるポップアップ。背景を半透明の黒（`rgba(0,0,0,0.5)`）で覆います。
 - `search-period`: 検索期間を目立たせるためのフォント設定。
+
+## 7. デプロイ・ホスティング環境
+- **ソース管理**: GitHub (`https://github.com/aminosup/amino-homepage`)
+- **公開サーバー**: Cloudflare Pages (`https://amino-homepage.pages.dev/`)
+- **連携の仕組み**:
+  GitHubのリポジトリ上のソースファイル（`index.html`など）が更新・プッシュされると、それをトリガーとしてCloudflare Pagesが自動的に変更を検知し、Webサイトの内容が最新の状態に自動デプロイされる仕組みとなっています。
