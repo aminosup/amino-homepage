@@ -1,5 +1,6 @@
-const VERSION = "v1.0.4";
+const VERSION = "v1.0.5";
 const VERSION_HISTORY = [
+  { version: "v1.0.5", date: "2026/05/12", details: "BTCニュースの電光掲示板（マーキー）機能を追加" },
   { version: "v1.0.4", date: "2026/05/11", details: "APIのレートリミット対策としてリクエスト間に1秒の待機処理を追加" },
   { version: "v1.0.3", date: "2026/04/10", details: "APIエラー取得時の例外処理を追加（TypeError修正）" },
   { version: "v1.0.2", date: "2026/04/10", details: "UIデザインの大幅刷新（グラスモフィズム、アニメーション、モダンフォント採用）" },
@@ -99,5 +100,28 @@ async function searchNews() {
     
     // APIレートリミット対策: 次のリクエストの前に1秒待機
     await sleep(1000);
+  }
+}
+
+// 画面読み込み時に電光掲示板用のBTCニュースを取得
+window.addEventListener('DOMContentLoaded', fetchBtcTicker);
+
+async function fetchBtcTicker() {
+  const tickerElem = document.getElementById('btcTicker');
+  const feedUrl = `https://news.google.com/rss/search?q=${encodeURIComponent('BTC')}&hl=ja&gl=JP&ceid=JP:ja`;
+  
+  try {
+    const response = await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feedUrl)}`);
+    const data = await response.json();
+    
+    if (data.status === 'ok' && data.items) {
+      // 取得したニュースタイトルを「／」で繋いで一つの文字列にする
+      const titles = data.items.slice(0, 5).map(item => item.title).join('　／　');
+      tickerElem.textContent = titles || '最近のBTCニュースはありません';
+    } else {
+      tickerElem.textContent = 'BTCニュースの取得に失敗しました';
+    }
+  } catch (error) {
+    tickerElem.textContent = 'BTCニュースの取得に失敗しました';
   }
 }
