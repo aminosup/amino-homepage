@@ -1,5 +1,6 @@
-const VERSION = "v1.0.5";
+const VERSION = "v1.0.6";
 const VERSION_HISTORY = [
+  { version: "v1.0.6", date: "2026/05/12", details: "電光掲示板の文字色を変更できるカラーボールUIを追加" },
   { version: "v1.0.5", date: "2026/05/12", details: "BTCニュースの電光掲示板（マーキー）機能を追加" },
   { version: "v1.0.4", date: "2026/05/11", details: "APIのレートリミット対策としてリクエスト間に1秒の待機処理を追加" },
   { version: "v1.0.3", date: "2026/04/10", details: "APIエラー取得時の例外処理を追加（TypeError修正）" },
@@ -124,4 +125,9 @@ async function fetchBtcTicker() {
   } catch (error) {
     tickerElem.textContent = 'BTCニュースの取得に失敗しました';
   }
+}
+
+// 電光掲示板の文字色を変更する関数
+function changeTickerColor(color) {
+  document.documentElement.style.setProperty('--ticker-color', color);
 }

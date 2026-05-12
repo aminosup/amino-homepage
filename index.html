@@ -10,10 +10,18 @@
 </head>
 <body>
   <div class="container">
-    <h1>🚀 ニュース検索アプリ <span id="version" class="version-badge" onclick="toggleVersionHistory()">v1.0.5</span></h1>
+    <h1>🚀 ニュース検索アプリ <span id="version" class="version-badge" onclick="toggleVersionHistory()">v1.0.6</span></h1>
     <!-- 電光掲示板エリア -->
     <div class="ticker-wrapper">
       <div class="ticker-content" id="btcTicker">BTCニュースを取得中...</div>
+    </div>
+    <!-- カラーピッカー（カラーボール） -->
+    <div class="color-picker-container">
+      <span class="color-ball" style="background-color: #39ff14;" onclick="changeTickerColor('#39ff14')"></span>
+      <span class="color-ball" style="background-color: #ff007f;" onclick="changeTickerColor('#ff007f')"></span>
+      <span class="color-ball" style="background-color: #00ffff;" onclick="changeTickerColor('#00ffff')"></span>
+      <span class="color-ball" style="background-color: #ffeb3b;" onclick="changeTickerColor('#ffeb3b')"></span>
+      <span class="color-ball" style="background-color: #ffffff;" onclick="changeTickerColor('#ffffff')"></span>
     </div>
     <h3>検索期間：本日～2日前までのニュース</h3>
     <h4>キーワードをカンマで区切って入力してください。</h4>
